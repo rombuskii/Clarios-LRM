@@ -3,3 +3,5 @@ Flask-Cors
 numpy
 pandas
 joblib
+gunicorn
+os

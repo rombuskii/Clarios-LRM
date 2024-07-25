@@ -2,7 +2,9 @@ from flask import Flask, request, jsonify
 import joblib
 import pandas as pd
 import numpy as np
+import os
 
+port = int(os.environ.get('PORT', 5000))
 app = Flask(__name__)
 
 # Load the trained model and encoder
@@ -47,4 +49,4 @@ def predict():
     return jsonify({'completed_probability_percentage': probability_percentage})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=port)
