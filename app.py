@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import joblib
 import pandas as pd
 import numpy as np
@@ -6,6 +7,14 @@ import os
 
 port = int(os.environ.get('PORT', 5000))
 app = Flask(__name__)
+
+cors = CORS(app, resources={
+    r"/*": {
+        "origins": ["*"],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"]
+    }
+})
 
 # Load the trained model and encoder
 model = joblib.load('logistic_regression_model.pkl')
