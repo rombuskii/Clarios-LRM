@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import os
 
-port = int(os.environ.get('PORT', 5000))
+port = int(os.environ.get('PORT', 8000))
 app = Flask(__name__)
 
 cors = CORS(app, resources={
