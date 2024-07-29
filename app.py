@@ -46,6 +46,12 @@ def predict():
     date_placed = data.get('datePlaced')
     actual_shipment_date = data.get('actualShipmentDate')
 
+    if(not sku):
+        sku = 'HE-FE'
+    
+    if(not quantity):
+        quantity = 151218
+
     # Preprocess the data
     processed_data = preprocess_data(sku, quantity, date_placed, actual_shipment_date)
     
