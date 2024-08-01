@@ -37,6 +37,10 @@ def preprocess_data(sku, quantity, date_placed, actual_shipment_date):
     
     return data_final
 
+@app.route('/', methods=['GET'])
+def hello():
+    return "Clarios Logistic Regression Model"
+
 @app.route('/predict', methods=['POST'])
 def predict():
     # Get data from request
