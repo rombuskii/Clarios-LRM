@@ -4,7 +4,8 @@ import joblib
 import pandas as pd
 import os
 
-#port = int(os.environ.get('PORT', 8000))
+
+port = int(os.environ.get('PORT', 8000))
 app = Flask(__name__)
 
 cors = CORS(app, resources={
@@ -84,7 +85,9 @@ def getDate():
     # Make prediction and get probability
     days_to_ship = date_model.predict(processed_data)
 
-    prediction = pd.to_datetime(actual_shipment_date) - pd.Timedelta(days=days_to_ship[0])
+    if (quantity > 100000):
+        prediction = pd.to_datetime(actual_shipment_date) - pd.Timedelta(days=days_to_ship[0] + (quantity/10000))
+
     
     return jsonify({'days_to_ship': prediction.strftime('%m/%d/%Y')})
 
@@ -117,4 +120,4 @@ def predict():
     return jsonify({'completed_probability_percentage': probability_percentage})
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=port)
