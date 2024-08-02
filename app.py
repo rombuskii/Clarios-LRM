@@ -2,10 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import joblib
 import pandas as pd
-import numpy as np
 import os
 
-port = int(os.environ.get('PORT', 8000))
+#port = int(os.environ.get('PORT', 8000))
 app = Flask(__name__)
 
 cors = CORS(app, resources={
@@ -118,4 +117,4 @@ def predict():
     return jsonify({'completed_probability_percentage': probability_percentage})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=port)
+    app.run()
