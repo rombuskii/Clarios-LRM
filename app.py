@@ -86,7 +86,8 @@ def getDate():
     # Make prediction and get probability
     days_to_ship = date_model.predict(processed_data)
 
-    if (quantity > 100000):
+    if (quantity and int(quantity) > 100000):
+        quantity = int(quantity)
         prediction = pd.to_datetime(actual_shipment_date) - pd.Timedelta(days=days_to_ship[0] + int(quantity / 100000))
     else:
         prediction = pd.to_datetime(actual_shipment_date) - pd.Timedelta(days=days_to_ship[0])
