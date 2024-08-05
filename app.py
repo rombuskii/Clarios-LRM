@@ -71,6 +71,7 @@ def getDate():
     data = request.json
     sku = data.get('sku')
     quantity = data.get('quantity')
+    print(quantity)
     actual_shipment_date = data.get('actualShipmentDate')
 
     if not sku:
@@ -85,10 +86,9 @@ def getDate():
     # Make prediction and get probability
     days_to_ship = date_model.predict(processed_data)
 
-    if (quantity > 100000):
-        prediction = pd.to_datetime(actual_shipment_date) - pd.Timedelta(days=days_to_ship[0] + (quantity/10000))
+    #if (quantity > 100000):
+    prediction = pd.to_datetime(actual_shipment_date) - pd.Timedelta(days=days_to_ship[0])
 
-    
     return jsonify({'days_to_ship': prediction.strftime('%m/%d/%Y')})
 
 
