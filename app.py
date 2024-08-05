@@ -3,7 +3,7 @@ from flask_cors import CORS
 import joblib
 import pandas as pd
 import os
-
+import math
 
 port = int(os.environ.get('PORT', 8000))
 app = Flask(__name__)
@@ -89,6 +89,9 @@ def getDate():
     if (quantity and int(quantity) > 100000):
         quantity = int(quantity)
         prediction = pd.to_datetime(actual_shipment_date) - pd.Timedelta(days=days_to_ship[0] + int(quantity / 100000))
+    elif (quantity and int(quantity) < 1000):
+        quantity = int(quantity)
+        prediction = pd.to_datetime(actual_shipment_date) - pd.Timedelta(days=days_to_ship[0] - (7 - int(7 * (quantity / 100000))))
     else:
         prediction = pd.to_datetime(actual_shipment_date) - pd.Timedelta(days=days_to_ship[0])
 
