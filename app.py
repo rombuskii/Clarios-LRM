@@ -74,11 +74,11 @@ def getDate():
     print(quantity)
     actual_shipment_date = data.get('actualShipmentDate')
 
-    if not sku:
-        sku = 'HE-FE'
+    if(not sku):
+        sku = 'VA-LI'
     
-    if not quantity:
-        quantity = 151218
+    if(not quantity):
+        quantity = 90218
 
     # Preprocess the data
     processed_data = preprocess_getDate(sku, quantity, actual_shipment_date)
