@@ -121,7 +121,7 @@ def predict():
     probability = prob_model.predict_proba(processed_data)[0][1]  # Probability of being 'Completed'
     
     # Convert probability to percentage
-    probability_percentage = probability * 100
+    probability_percentage =  (1 - probability) * 100
     
     return jsonify({'completed_probability_percentage': probability_percentage})
 
