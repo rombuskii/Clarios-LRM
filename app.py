@@ -109,10 +109,10 @@ def predict():
     actual_shipment_date = data.get('actualShipmentDate')
 
     if(not sku):
-        sku = 'HE-FE'
+        sku = 'VA-LI'
     
     if(not quantity):
-        quantity = 151218
+        quantity = 90218
 
     # Preprocess the data
     processed_data = preprocess_data(sku, quantity, date_placed, actual_shipment_date)
